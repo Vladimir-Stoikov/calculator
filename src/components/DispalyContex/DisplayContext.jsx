@@ -16,14 +16,14 @@ export default function DisplayContent({children}) {
   const [multValue, setMultValue] = useState('');
   const [divisionValue, setDivisionValue] = useState('');
 
-  // useEffect(() => {
-  //   displayInput !== '' && setCurrentValue(prev => prev + displayInput);
-  // },[displayInput]);
-
   function numberClick(num) {
     displayInput.length < 10 && setDisplayInput(prev => prev + num);
     setCurrentValue(prev => prev + num);
   }
+
+  useEffect(() => {
+    displayInput % 1 !== 0 && setDisplayInput(Math.round(displayInput * 100) / 100)
+  }, [displayInput])
 
   function clear() {
     setDisplayInput('');
@@ -45,7 +45,6 @@ export default function DisplayContent({children}) {
       setCurrentValue(prev => prev + '+');
       setDisplayInput('');
     } else if (sumValue) {
-        // setCurrentValue(prev => prev + '=');
         setDisplayInput(() => +sumValue + +displayInput)
         setSumValue('');
     }
@@ -58,7 +57,6 @@ export default function DisplayContent({children}) {
       setCurrentValue(prev => prev + '-');
       setDisplayInput('');
     } else if (subValue) {
-        // setCurrentValue(prev => prev + '=');
         setDisplayInput(() => +subValue - +displayInput)
         setSubValue('');
     }
@@ -71,7 +69,6 @@ export default function DisplayContent({children}) {
       setCurrentValue(prev => prev + '*');
       setDisplayInput('');
     } else if (multValue) {
-        // setCurrentValue(prev => prev + '=');
         setDisplayInput(() => +multValue * +displayInput)
         setMultValue('');
     }
@@ -84,7 +81,6 @@ export default function DisplayContent({children}) {
       setCurrentValue(prev => prev + '/');
       setDisplayInput('');
     } else if (divisionValue) {
-        // setCurrentValue(prev => prev + '=');
         setDisplayInput(() => +divisionValue / +displayInput)
         setDivisionValue('');
     }
