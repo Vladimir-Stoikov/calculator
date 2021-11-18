@@ -16,12 +16,13 @@ export default function DisplayContent({children}) {
   const [multValue, setMultValue] = useState('');
   const [divisionValue, setDivisionValue] = useState('');
 
-  useEffect(() => {
-    displayInput !== '' && setCurrentValue(prev => prev + displayInput);
-  },[displayInput]);
+  // useEffect(() => {
+  //   displayInput !== '' && setCurrentValue(prev => prev + displayInput);
+  // },[displayInput]);
 
   function numberClick(num) {
     displayInput.length < 10 && setDisplayInput(prev => prev + num);
+    setCurrentValue(prev => prev + num);
   }
 
   function clear() {
@@ -30,6 +31,7 @@ export default function DisplayContent({children}) {
     setSubValue('');
     setMultValue('');
     setDivisionValue('');
+    setCurrentValue('');
   }
 
   function backSpace() {
@@ -43,7 +45,7 @@ export default function DisplayContent({children}) {
       setCurrentValue(prev => prev + '+');
       setDisplayInput('');
     } else if (sumValue) {
-        setCurrentValue(prev => prev + '=');
+        // setCurrentValue(prev => prev + '=');
         setDisplayInput(() => +sumValue + +displayInput)
         setSumValue('');
     }
@@ -56,7 +58,7 @@ export default function DisplayContent({children}) {
       setCurrentValue(prev => prev + '-');
       setDisplayInput('');
     } else if (subValue) {
-        setCurrentValue(prev => prev + '=');
+        // setCurrentValue(prev => prev + '=');
         setDisplayInput(() => +subValue - +displayInput)
         setSubValue('');
     }
@@ -69,7 +71,7 @@ export default function DisplayContent({children}) {
       setCurrentValue(prev => prev + '*');
       setDisplayInput('');
     } else if (multValue) {
-        setCurrentValue(prev => prev + '=');
+        // setCurrentValue(prev => prev + '=');
         setDisplayInput(() => +multValue * +displayInput)
         setMultValue('');
     }
@@ -82,7 +84,7 @@ export default function DisplayContent({children}) {
       setCurrentValue(prev => prev + '/');
       setDisplayInput('');
     } else if (divisionValue) {
-        setCurrentValue(prev => prev + '=');
+        // setCurrentValue(prev => prev + '=');
         setDisplayInput(() => +divisionValue / +displayInput)
         setDivisionValue('');
     }
