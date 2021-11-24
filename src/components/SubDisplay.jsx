@@ -4,7 +4,12 @@ import { UseDisplay } from './DispalyContex/DisplayContext'
 
 const SubDisplayStyled = styled.section`
   position: absolute;
-  right: 10%;
+  width: 29rem;
+  right: 4%;
+  overflow: hidden;
+  white-space: nowrap;
+  overflow-x: auto;
+  text-align: right;
   font-family: 'Codystar', cursive;
   font-size: 3rem;
   color: #FEC260;

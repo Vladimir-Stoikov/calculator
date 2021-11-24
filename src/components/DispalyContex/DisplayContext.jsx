@@ -18,9 +18,15 @@ export default function DisplayContent({children}) {
   const [divisionValue, setDivisionValue] = useState('');
 
   function numberClick(num) {
-    afterEquel === true && clear();
-    displayInput.length < 10 && setDisplayInput(prev => prev + num);
+    if(afterEquel === true) {
+      setDisplayInput('');
+      setCurrentValue('');
+      setAfterEquel(false);
+    };
+    if (displayInput.length < 12 || displayInput.length === undefined) {
+    setDisplayInput(prev => prev + num);
     setCurrentValue(prev => prev + num);
+  };
   }
 
   useEffect(() => {
