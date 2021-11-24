@@ -10,6 +10,7 @@ export default function DisplayContent({children}) {
 
   const [displayInput, setDisplayInput] = useState('');
   const [currentValue, setCurrentValue] = useState('');
+  const [afterEquel, setAfterEquel] = useState(false);
 
   const [sumValue, setSumValue] = useState('');
   const [subValue, setSubValue] = useState('');
@@ -17,6 +18,7 @@ export default function DisplayContent({children}) {
   const [divisionValue, setDivisionValue] = useState('');
 
   function numberClick(num) {
+    afterEquel === true && clear();
     displayInput.length < 10 && setDisplayInput(prev => prev + num);
     setCurrentValue(prev => prev + num);
   }
@@ -32,6 +34,7 @@ export default function DisplayContent({children}) {
     setMultValue('');
     setDivisionValue('');
     setCurrentValue('');
+    setAfterEquel(false);
   }
 
   function backSpace() {
@@ -39,9 +42,10 @@ export default function DisplayContent({children}) {
   }
 
   function sum() {
+    setAfterEquel(false);
     if(!sumValue) {
       setSumValue(displayInput);
-      equals()
+      sumValue && sum();
       setCurrentValue(prev => prev + '+');
       setDisplayInput('');
     } else if (sumValue) {
@@ -51,9 +55,10 @@ export default function DisplayContent({children}) {
   }
 
   function sub() {
+    setAfterEquel(false);
     if(!subValue) {
       setSubValue(displayInput);
-      equals()
+      subValue && sub();
       setCurrentValue(prev => prev + '-');
       setDisplayInput('');
     } else if (subValue) {
@@ -63,9 +68,10 @@ export default function DisplayContent({children}) {
   }
 
   function mult() {
+    setAfterEquel(false);
     if(!multValue) {
       setMultValue(displayInput);
-      equals()
+      multValue && mult();
       setCurrentValue(prev => prev + '*');
       setDisplayInput('');
     } else if (multValue) {
@@ -75,9 +81,10 @@ export default function DisplayContent({children}) {
   }
 
   function division() {
+    setAfterEquel(false);
     if(!divisionValue) {
       setDivisionValue(displayInput);
-      equals()
+      divisionValue && division();
       setCurrentValue(prev => prev + '/');
       setDisplayInput('');
     } else if (divisionValue) {
@@ -91,6 +98,7 @@ export default function DisplayContent({children}) {
     subValue && sub();
     multValue && mult();
     divisionValue && division();
+    setAfterEquel(prev => !prev);
   }
 
 
